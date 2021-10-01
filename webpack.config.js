@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'producion'
 
+const ReactRefreshWebPackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
 
 module.exports = {
 
@@ -16,6 +18,7 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  // resolvendo modulos
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -27,20 +30,34 @@ module.exports = {
     },
     compress: true,
     port: 5500,
+    hot: true,
+
   },
 
   plugins: [
+    isDevelopment && new ReactRefreshWebPackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname,  'public', 'index.html')
     })
-  ],
+  ].filter(Boolean),
 
+  // regras de acesso a arquivo
   module: {
     rules: [
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+
+          options: {
+            plugins: [
+
+              isDevelopment && require.resolve('react-refresh/babel')
+
+            ].filter(Boolean)
+          }
+        }
 
       },
       {

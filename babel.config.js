@@ -7,3 +7,5 @@ module.exports = {
 
   ]
 }
+
+// runtime resolve o import do react
