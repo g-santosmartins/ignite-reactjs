@@ -3,24 +3,38 @@ section.repository-list {
 
   h1 {
     margin-bottom: 16px;
+    color: #f1f1f1;
+    font-weight: 600;
+
   }
 
   ul {
     list-style: none;
 
     li {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr;
+      box-shadow:10px 5px 5px black ;
+      color: #1d1d1d;
+      border-radius: 5px;
+      background: #f1f1f1;
+      margin-bottom: 20px;
 
+      strong {
+        align-content: center;
+      }
       & + li {
         margin-top: 20px;
       }
 
-      p{
+      p {
         font-size: 14px;
-        color: #444;
+        color: #1d1d1d;
         margin-top: 8px;
       }
 
-      a{
+      a {
         display: inline-block;
         margin-top: 16px;
         text-decoration: #8257e6;
